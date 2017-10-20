@@ -3,12 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "apollo-client": "^1.9.3",
     "babel-plugin-emotion": "^8.0.6",
     "emotion": "^8.0.8",
     "found": "^0.3.4",
+    "graphql-tag": "^2.5.0",
+    "js-cookie": "^2.1.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-emotion": "^8.0.8",
+    "react-md-button": "^0.0.1",
+    "react-md-card": "^0.0.1",
+    "react-md-input": "^0.0.2",
+    "react-md-progress-bar": "^0.0.2",
     "react-scripts": "1.0.14"
   },
   "scripts": {
