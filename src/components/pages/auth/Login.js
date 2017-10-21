@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import Button from 'react-md-button';
 import Card from 'react-md-card';
 import Input from 'react-md-input';
 import ProgressBar from 'react-md-progress-bar';
+import Request from '../../../helpers/Request';
 import { Wrapper, Middle, Inner, Title, SubTitle, ButtonContainer } from './styles';
 
 class Login extends PureComponent {
@@ -31,14 +33,58 @@ class Login extends PureComponent {
    */
   onChange = (event, key) => {
     this.setState({
-      form : Object.assign({},this.state.form , {[key]: event.target.value})
+      form : Object.assign({}, this.state.form, {[key]: event.target.value})
     });
   }
 
+  /**
+   * Button OnClick
+   */
   onClick = () => {
-    this.setState({
-      progressBar: true
-    })
+    if (this.state.form.domain !== '') {
+      const request = new Request(this.state.form.domain);
+
+      this.setState({
+        progressBar: true
+      });
+
+      // inputs
+      const inputs =  [
+        {
+          field: 'email',
+          value: this.state.form.email,
+        },
+        {
+          field: 'password',
+          value: this.state.form.password,
+        }
+      ];
+
+      // response
+      const fields = [
+        {
+          field: 'accessToken'
+        }
+      ];
+
+      // make http request
+      request.mutate('Login', 'login', inputs, fields).then((result) => {
+        // check if accessToken exists
+        if (result.hasOwnProperty('data') && result.data.hasOwnProperty('login') && result.data.login.hasOwnProperty('accessToken')) {
+          Cookies.set('Authorization', result.data.login.accessToken);
+          Cookies.set('Tenant', this.state.domain);
+
+          this.props.onChange(true);
+        } else {
+          console.log(result.error);
+        }
+      }).catch((error) => {
+        this.setState({
+          progressBar: false
+        });
+        console.log(error.graphQLErrors);
+      });
+    }
   }
 
   /**
@@ -75,9 +121,9 @@ class Login extends PureComponent {
               <ButtonContainer>
                 <Button
                   primary={true}
-                  disabled={false}
+                  disabled={this.state.isValidForm}
                   label="Entrar"
-                  onClick={ () => this.onClick(this) }
+                  onClick={ () => this.onClick() }
                 />
               </ButtonContainer>
             </Card>
