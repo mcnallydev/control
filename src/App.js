@@ -1,9 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from 'found';
+import Cookies from 'js-cookie';
 import { Sidebar, Items, Item, LinkClassName, Text, Icon } from './styles';
+import Login from './components/pages/auth/Login';
 
 class App extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAuthenticated: (Cookies.get('Authorization') !== undefined),
+      showSidebar: false
+    };
+  }
+
+  onChangeLogin = (isAuthenticated) => {
+    this.setState({
+      isAuthenticated: isAuthenticated
+    });
+  }
+
+  renderPages() {
+    if (this.state.isAuthenticated) {
+      return this.renderDashboard();
+    } else {
+      return (
+        <Login onChange={this.onChangeLogin} />
+      );
+    }
+  }
+
+  renderDashboard() {
     return (
       <div>
         <Sidebar>
@@ -55,6 +81,10 @@ class App extends Component {
         {this.props.children}
       </div>
     );
+  }
+
+  render() {
+    return this.renderPages();
   }
 }
 

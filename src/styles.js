@@ -37,7 +37,6 @@ export const LinkClassName = css`
   height: 64px;
   text-decoration: none;
   color: rgba(0, 0, 0, 0.54);
-  font-family: inherit;
   font-weight: bold;
   white-space: nowrap;
   cursor: pointer;
@@ -46,7 +45,6 @@ export const LinkClassName = css`
   align-items: center;
   float: left;
   width: 100%;
-  font-family: 'Roboto', sans-serif;
   &:hover {
     text-decoration: none;
   }
