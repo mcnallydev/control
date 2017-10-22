@@ -3,12 +3,14 @@ import { Link } from 'found';
 import Input from 'react-md-input';
 import Card from 'react-md-card';
 import ProgressBar from 'react-md-progress-bar';
+import Switch from 'react-md-switch';
 import Button from 'react-md-button';
 import { Wrapper, ButtonsContainer, LinkClassName, ButtonContainer, Error } from './styles';
 import Header from '../../../master/header';
 import Request from '../../../../helpers/Request';
 
-class AdminCreate extends PureComponent {
+
+class AdminUpdate extends PureComponent {
   /**
    * React component constructor
    * @param  {[type]} props [description]
@@ -21,7 +23,7 @@ class AdminCreate extends PureComponent {
         name: '',
         email: '',
         password: '',
-        role: 0,
+        active: false,
       },
       errors: {
         name: '',
@@ -35,6 +37,10 @@ class AdminCreate extends PureComponent {
     this.onClick = this.onClick.bind(this);
   }
 
+  componentWillMount() {
+    this.httpFetch();
+  }
+
   /**
    * Change event on inputs
    * @param  {String} propertyName
@@ -45,6 +51,15 @@ class AdminCreate extends PureComponent {
     const newForm = {
       ...form,
       [propertyName]: event.target.value
+    };
+    this.setState({ form: newForm });
+  }
+
+  onChangeActive = (e, active) => {
+    const { form } = this.state;
+    const newForm = {
+      ...form,
+      active: active
     };
     this.setState({ form: newForm });
   }
@@ -73,16 +88,63 @@ class AdminCreate extends PureComponent {
     self.validateInput('name', (nameStatus) => {
       if (nameStatus) {
         self.validateInput('email', (emailStatus) => {
-          console.log(emailStatus);
           if (emailStatus) {
-            self.validateInput('password', (passwordStatus) => {
-              if (passwordStatus) {
-                this.httpRequest();
-              }
-            });
+            this.httpRequest();
           }
         });
       }
+    });
+  }
+
+  /**
+   * To set states based graphQL
+   */
+  httpFetch() {
+    this.setState({
+      progressBar: true,
+    });
+
+    // instance request
+    const request = new Request();
+
+    // response
+    const fields = [
+      {
+        field: 'name'
+      },
+      {
+        field: 'email'
+      },
+      {
+        field: 'active'
+      }
+    ];
+
+    // arguments
+    const args = [
+      {
+        field: 'id',
+        value: this.props.params.id
+      }
+    ]
+
+    request.query('user', fields, args).then((result) => {
+      const { form } = this.state;
+      const newForm = {
+        ...form,
+        name: result.data.user.name,
+        email: result.data.user.email,
+        active: result.data.user.active
+      };
+      this.setState({
+        progressBar: false,
+        form: newForm
+      });
+    }).catch((error) => {
+      this.setState({
+        progressBar: false,
+        error: error.graphQLErrors[0].message
+      });
     });
   }
 
@@ -101,6 +163,10 @@ class AdminCreate extends PureComponent {
     // inputs
     const inputs =  [
       {
+        field: 'id',
+        value: this.props.params.id,
+      },
+      {
         field: 'name',
         value: this.state.form.name,
       },
@@ -109,14 +175,18 @@ class AdminCreate extends PureComponent {
         value: this.state.form.email,
       },
       {
-        field: 'password',
-        value: this.state.form.password,
-      },
-      {
-        field: 'role',
-        value: this.state.form.role,
+        field: 'active',
+        value: this.state.form.active,
       }
     ];
+
+    // include change password if don't is empty
+    if (this.state.form.password !== '') {
+      inputs.push({
+        field: 'password',
+        value: this.state.form.password,
+      });
+    }
 
     // response
     const fields = [
@@ -131,7 +201,7 @@ class AdminCreate extends PureComponent {
     ];
 
     // make http request
-    request.mutate('UserCreate', 'userCreate', inputs, fields).then((result) => {
+    request.mutate('UserUpdate', 'userUpdate', inputs, fields).then((result) => {
       window.location = `/users/admin`
     }).catch((error) => {
       this.setState({
@@ -145,7 +215,7 @@ class AdminCreate extends PureComponent {
   render() {
     return (
       <div>
-        <Header title="Crear un usuario administrador"></Header>
+        <Header title={`Actualizar al usuario administrador ${this.state.form.name}`}></Header>
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Wrapper>
           <Error>{this.state.error}</Error>
@@ -171,9 +241,14 @@ class AdminCreate extends PureComponent {
               error={this.state.errors.password}
               onChange={ this.onChange('password') }
             />
+            <Switch
+              id={'switch'}
+              checked={this.state.form.active}
+              onChange={this.onChangeActive}
+            />
             <ButtonsContainer>
               <ButtonContainer>
-                <Button onClick={ this.onClick } primary={true} label="Crear" />
+                <Button onClick={ this.onClick } primary={true} label="Actualizar" />
               </ButtonContainer>
               <Link to="/users/admin" className={LinkClassName} exact>
                 Cancelar
@@ -189,4 +264,4 @@ class AdminCreate extends PureComponent {
 /**
  * Export component
  */
-export default AdminCreate;
+export default AdminUpdate;

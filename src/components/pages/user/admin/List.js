@@ -102,7 +102,7 @@ class AdminList extends PureComponent {
   renderList() {
     let users = this.state.users.map((user, index) => {
       return (
-        <Link key={index} className={LinkClassName} to={`/users/admin/${user.id}/edit`}>
+        <Link key={index} className={LinkClassName} to={`/users/admin/${user.id}/update`}>
           <Icon className="material-icons">account_circle</Icon>
           <Info>
             <Name>{user.name}</Name>

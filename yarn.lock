@@ -5439,9 +5439,9 @@ react-md-progress-bar@^0.0.2:
     react-dom "^16.0.0"
     styled-components "^2.2.0"
 
-react-md-switch@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/react-md-switch/-/react-md-switch-0.0.2.tgz#2d3b106c0cf86d85af77850a01cc74b6e3f51a1b"
+react-md-switch@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-md-switch/-/react-md-switch-0.0.3.tgz#02868340391887bedccb46ab3ba4cd8f78e39a20"
   dependencies:
     prop-types "^15.6.0"
     react "^16.0.0"

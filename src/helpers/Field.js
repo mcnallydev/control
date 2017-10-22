@@ -28,9 +28,26 @@ class Field {
    *  }
    * ]
    * @param {*} fields
+   *
+   * [
+   *   {
+   *     field: 'id',
+   *     value: 1
+   *   }
+   * ]
+   * @param {[{}]} args
    */
-  static query(fieldName, fields) {
+  static query(fieldName, fields, args) {
     let fieldsString = '';
+    let argsArray = [];
+
+    // check if inputs is set and have items
+    if (args && args.length !== 0) {
+      args.map((item) => {
+        // add arg to array
+        argsArray.push(`${item.field}: ${Field.parseValue(item.value)}`)
+      });
+    }
 
     // check if fields is set and have items
     if (fields && fields.length !== 0) {
@@ -43,7 +60,7 @@ class Field {
 
           // Concatenate the result and create his attributes if necessary
           fieldsString += `${item.field} {
-            ${Field.query(item.fields)}
+            ${Field.query(fieldName, item.fields)}
           }
           `;
         } else {
@@ -55,8 +72,10 @@ class Field {
       });
     }
 
+    let argsString = (argsArray.length !== 0) ? `(${argsArray.join()})` : '';
+
     return `{
-      ${fieldName} {
+      ${fieldName}${argsString} {
         ${fieldsString}
       }
     }`;
@@ -136,9 +155,7 @@ class Field {
         if (item.hasOwnProperty('fields')) {
 
           // Concatenate the result and create his attributes if necessary
-          fieldsString += `${item.field} {
-            ${Field.query(item.fields)}
-          }
+          fieldsString += `${Field.query(item.field, item.fields, [])}
           `;
         } else {
 
@@ -152,9 +169,7 @@ class Field {
     return `mutation ${mutateName} {
       ${fieldName}(input: {
         ${inputsString}
-      }) {
-        ${fieldsString}
-      }
+      }) ${fieldsString}
     }`;
   }
 }
