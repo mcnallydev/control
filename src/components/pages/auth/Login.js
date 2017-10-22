@@ -72,7 +72,7 @@ class Login extends PureComponent {
         // check if accessToken exists
         if (result.hasOwnProperty('data') && result.data.hasOwnProperty('login') && result.data.login.hasOwnProperty('accessToken')) {
           Cookies.set('Authorization', result.data.login.accessToken);
-          Cookies.set('Tenant', this.state.domain);
+          Cookies.set('Tenant', this.state.form.domain);
 
           this.props.onChange(true);
         } else {

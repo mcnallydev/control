@@ -48,12 +48,12 @@ export const LinkClassName = css`
   &:hover {
     text-decoration: none;
   }
-`
+`;
 
 export const Text = styled.span`
   height: 64px !important;
   line-height: 64px !important;
-`
+`;
 
 export const Icon = styled.i`
   display: inline-flex;
@@ -63,4 +63,10 @@ export const Icon = styled.i`
   font-size: 25px !important;
   margin-right: 18px;
   padding-left: 25px;
-`
+`;
+
+export const Page = styled.div`
+  margin-left: 272px;
+  position: relative;
+  overflow: hidden;
+`;

@@ -1,0 +1,14 @@
+[
+  {
+    "text": "Clientes",
+    "href": "/users/customer"
+  },
+  {
+    "text": "Entrenadores",
+    "href": "/users/coach"
+  },
+  {
+    "text": "Administradores",
+    "href": "/users/admin"
+  }
+]

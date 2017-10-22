@@ -13,9 +13,11 @@
     "react-dom": "^16.0.0",
     "react-emotion": "^8.0.8",
     "react-md-button": "^0.0.1",
-    "react-md-card": "^0.0.1",
+    "react-md-card": "^0.0.4",
+    "react-md-fab": "^0.0.1",
     "react-md-input": "^0.0.2",
     "react-md-progress-bar": "^0.0.2",
+    "react-md-switch": "^0.0.3",
     "react-scripts": "1.0.14"
   },
   "scripts": {

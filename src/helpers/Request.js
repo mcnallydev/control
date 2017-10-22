@@ -23,12 +23,13 @@ class Request {
 
   /**
    * Query
-   * @param  {String} fieldNamen]
+   * @param  {String} fieldNamen
    * @param  {[]} fields
    * @return {Promise}
    */
-  query(fieldName, fields) {
-    const queryString = Field.query(fieldName, fields);
+  query(fieldName, fields, args) {
+    let queryArgs = args || [];
+    const queryString = Field.query(fieldName, fields, queryArgs);
 
     return this.client.query({
       query: gql`${queryString}`
