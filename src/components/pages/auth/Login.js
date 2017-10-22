@@ -68,7 +68,7 @@ class Login extends PureComponent {
       ];
 
       // make http request
-      request.mutate('Login', 'login', inputs, fields).then((result) => {
+      request.mutate('Login', 'login', inputs, fields, true).then((result) => {
         // check if accessToken exists
         if (result.hasOwnProperty('data') && result.data.hasOwnProperty('login') && result.data.login.hasOwnProperty('accessToken')) {
           Cookies.set('Authorization', result.data.login.accessToken);

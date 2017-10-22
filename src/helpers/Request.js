@@ -44,8 +44,8 @@ class Request {
    * @param  {[]} fields
    * @return {Promise}
    */
-  mutate(mutationName, fieldName, inputs, fields) {
-    const mutateString = Field.mutate(mutationName, fieldName, inputs, fields);
+  mutate(mutationName, fieldName, inputs, fields, isRoot) {
+    const mutateString = Field.mutate(mutationName, fieldName, inputs, fields, isRoot);
 
     return this.client.mutate({
       mutation: gql`${mutateString}`

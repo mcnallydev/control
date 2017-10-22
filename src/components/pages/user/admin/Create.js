@@ -131,7 +131,7 @@ class AdminCreate extends PureComponent {
     ];
 
     // make http request
-    request.mutate('UserCreate', 'userCreate', inputs, fields).then((result) => {
+    request.mutate('UserCreate', 'userCreate', inputs, fields, false).then((result) => {
       window.location = `/users/admin`
     }).catch((error) => {
       this.setState({

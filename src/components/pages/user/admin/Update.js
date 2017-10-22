@@ -201,7 +201,7 @@ class AdminUpdate extends PureComponent {
     ];
 
     // make http request
-    request.mutate('UserUpdate', 'userUpdate', inputs, fields).then((result) => {
+    request.mutate('UserUpdate', 'userUpdate', inputs, fields, false).then((result) => {
       window.location = `/users/admin`
     }).catch((error) => {
       this.setState({

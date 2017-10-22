@@ -132,7 +132,7 @@ class Field {
    * ]
    * @param {*} fields
    */
-  static mutate(mutateName, fieldName, inputs, fields) {
+  static mutate(mutateName, fieldName, inputs, fields, isRoot) {
     let fieldsString = '';
     let inputsString = '';
 
@@ -166,10 +166,23 @@ class Field {
       });
     }
 
+    // Example false:
+    // {
+    //  id
+    //  name
+    // }
+    //
+    // Example true:
+    // user {
+    //  id
+    //  name
+    // }
+    let fieldsStringFormat = (isRoot) ? `{${fieldsString}}` : fieldsString;
+
     return `mutation ${mutateName} {
       ${fieldName}(input: {
         ${inputsString}
-      }) ${fieldsString}
+      }) ${fieldsStringFormat}
     }`;
   }
 }
