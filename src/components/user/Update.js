@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'found';
 import Input from 'react-md-input';
 import Card from 'react-md-card';
@@ -6,11 +7,11 @@ import ProgressBar from 'react-md-progress-bar';
 import Switch from 'react-md-switch';
 import Button from 'react-md-button';
 import { Wrapper, ButtonsContainer, LinkClassName, ButtonContainer, Error } from './styles';
-import Header from '../../../master/header';
-import Request from '../../../../helpers/Request';
+import Header from '../master/header';
+import Request from '../../helpers/Request';
 
 
-class AdminUpdate extends PureComponent {
+class Update extends PureComponent {
   /**
    * React component constructor
    * @param  {[type]} props [description]
@@ -124,7 +125,7 @@ class AdminUpdate extends PureComponent {
     const args = [
       {
         field: 'id',
-        value: this.props.params.id
+        value: this.props.id
       }
     ]
 
@@ -164,7 +165,7 @@ class AdminUpdate extends PureComponent {
     const inputs =  [
       {
         field: 'id',
-        value: this.props.params.id,
+        value: this.props.id,
       },
       {
         field: 'name',
@@ -202,7 +203,7 @@ class AdminUpdate extends PureComponent {
 
     // make http request
     request.mutate('UserUpdate', 'userUpdate', inputs, fields, false).then((result) => {
-      window.location = `/users/admin`
+      window.location = `/users/${this.props.userType}`
     }).catch((error) => {
       this.setState({
         progressBar: false,
@@ -215,7 +216,7 @@ class AdminUpdate extends PureComponent {
   render() {
     return (
       <div>
-        <Header title={`Actualizar al usuario administrador ${this.state.form.name}`}></Header>
+        <Header title={`Actualizar al usuario ${this.props.title} ${this.state.form.name}`}></Header>
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Wrapper>
           <Error>{this.state.error}</Error>
@@ -250,7 +251,7 @@ class AdminUpdate extends PureComponent {
               <ButtonContainer>
                 <Button onClick={ this.onClick } primary={true} label="Actualizar" />
               </ButtonContainer>
-              <Link to="/users/admin" className={LinkClassName} exact>
+              <Link to={`/users/${this.props.userType}`} className={LinkClassName} exact>
                 Cancelar
               </Link>
             </ButtonsContainer>
@@ -261,7 +262,17 @@ class AdminUpdate extends PureComponent {
   }
 }
 
+Update.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  userType: PropTypes.oneOf([
+    'admin',
+    'coach',
+    'customer'
+  ]),
+};
+
 /**
  * Export component
  */
-export default AdminUpdate;
+export default Update;

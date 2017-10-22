@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'found';
 import Input from 'react-md-input';
 import Card from 'react-md-card';
 import ProgressBar from 'react-md-progress-bar';
 import Button from 'react-md-button';
 import { Wrapper, ButtonsContainer, LinkClassName, ButtonContainer, Error } from './styles';
-import Header from '../../../master/header';
-import Request from '../../../../helpers/Request';
+import Header from '../master/header';
+import Request from '../../helpers/Request';
 
-class AdminCreate extends PureComponent {
+class Create extends PureComponent {
   /**
    * React component constructor
    * @param  {[type]} props [description]
@@ -21,7 +22,7 @@ class AdminCreate extends PureComponent {
         name: '',
         email: '',
         password: '',
-        role: 0,
+        role: this.props.userRole,
       },
       errors: {
         name: '',
@@ -33,6 +34,32 @@ class AdminCreate extends PureComponent {
     };
 
     this.onClick = this.onClick.bind(this);
+  }
+
+  /**
+   * React component componentDidMount
+   */
+  componentDidMount() {
+    let password = (this.props.userType === 'customer') ? this.generatePassword() : '';
+    const { form } = this.state;
+    const newForm = {
+      ...form,
+      password: password
+    };
+    this.setState({ form: newForm });
+  }
+
+  /**
+   * Generate random password String
+   * @return {String}
+   */
+  generatePassword() {
+    let password = '';
+    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789*#";
+    for (var i = 0; i < 32; i++) {
+      password += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return password;
   }
 
   /**
@@ -132,7 +159,7 @@ class AdminCreate extends PureComponent {
 
     // make http request
     request.mutate('UserCreate', 'userCreate', inputs, fields, false).then((result) => {
-      window.location = `/users/admin`
+      window.location = `/users/${this.props.userType}`
     }).catch((error) => {
       this.setState({
         progressBar: false,
@@ -145,7 +172,7 @@ class AdminCreate extends PureComponent {
   render() {
     return (
       <div>
-        <Header title="Crear un usuario administrador"></Header>
+        <Header title={`Crear un usuario ${this.props.title}`}></Header>
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Wrapper>
           <Error>{this.state.error}</Error>
@@ -175,7 +202,7 @@ class AdminCreate extends PureComponent {
               <ButtonContainer>
                 <Button onClick={ this.onClick } primary={true} label="Crear" />
               </ButtonContainer>
-              <Link to="/users/admin" className={LinkClassName} exact>
+              <Link to={`/users/${this.props.userType}`} className={LinkClassName} exact>
                 Cancelar
               </Link>
             </ButtonsContainer>
@@ -186,7 +213,17 @@ class AdminCreate extends PureComponent {
   }
 }
 
+Create.propTypes = {
+  title: PropTypes.string.isRequired,
+  userRole: PropTypes.number.isRequired,
+  userType: PropTypes.oneOf([
+    'admin',
+    'coach',
+    'customer'
+  ]),
+};
+
 /**
  * Export component
  */
-export default AdminCreate;
+export default Create;

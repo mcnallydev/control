@@ -1,13 +1,14 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'found';
 import Card from 'react-md-card';
 import Fab from 'react-md-fab';
 import ProgressBar from 'react-md-progress-bar';
 import styled, { css } from 'react-emotion';
-import Header from '../../../master/header';
-import Tabs from '../../../master/tabs';
-import Request from '../../../../helpers/Request';
-import usersTabs from '../usersTabs.json';
+import Header from '../master/header';
+import Tabs from '../master/tabs';
+import Request from '../../helpers/Request';
+import usersTabs from './usersTabs.json';
 
 const LinkClassName = css`
   width: 100%;
@@ -45,7 +46,7 @@ const Email = styled.span`
   color: #737373;
 `;
 
-class AdminList extends PureComponent {
+class List extends PureComponent {
   /**
    * React component constructor
    * @param  {[type]} props [description]
@@ -91,10 +92,10 @@ class AdminList extends PureComponent {
       }
     ];
 
-    request.query('userAdmins', fields).then((result) => {
+    request.query(this.props.fieldName, fields).then((result) => {
       this.setState({
         progressBar: false,
-        users: result.data.userAdmins
+        users: result.data[this.props.fieldName]
       });
     });
   }
@@ -102,7 +103,7 @@ class AdminList extends PureComponent {
   renderList() {
     let users = this.state.users.map((user, index) => {
       return (
-        <Link key={index} className={LinkClassName} to={`/users/admin/${user.id}/update`}>
+        <Link key={index} className={LinkClassName} to={`/users/${this.props.userType}/${user.id}/update`}>
           <Icon className="material-icons">account_circle</Icon>
           <Info>
             <Name>{user.name}</Name>
@@ -117,13 +118,13 @@ class AdminList extends PureComponent {
   render() {
     return (
       <div>
-        <Header title="Administradores"></Header>
-        <Tabs items={usersTabs} selected="2" />
+        <Header title={this.props.title}></Header>
+        <Tabs items={usersTabs} selected={this.props.tabSelected} />
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Card noPadding={true}>
           {this.renderList()}
         </Card>
-        <Link to="/users/admin/create">
+        <Link to={`/users/${this.props.userType}/create`}>
           <Fab onClick={() => {}} />
         </Link>
       </div>
@@ -131,7 +132,26 @@ class AdminList extends PureComponent {
   }
 }
 
+List.propTypes = {
+  fieldName: PropTypes.oneOf([
+    'userAdmins',
+    'userCoaches',
+    'userCustomers'
+  ]),
+  tabSelected: PropTypes.oneOf([
+    '0',
+    '1',
+    '2'
+  ]),
+  title: PropTypes.string.isRequired,
+  userType: PropTypes.oneOf([
+    'admin',
+    'coach',
+    'customer'
+  ]),
+};
+
 /**
  * Export component
  */
-export default AdminList;
+export default List;
