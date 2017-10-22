@@ -101,9 +101,10 @@ class List extends PureComponent {
   }
 
   renderList() {
+    let pathEnd = (this.props.userType === 'customer') ? '' : '/update';
     let users = this.state.users.map((user, index) => {
       return (
-        <Link key={index} className={LinkClassName} to={`/users/${this.props.userType}/${user.id}/update`}>
+        <Link key={index} className={LinkClassName} to={`/users/${this.props.userType}/${user.id}${pathEnd}`}>
           <Icon className="material-icons">account_circle</Icon>
           <Info>
             <Name>{user.name}</Name>
