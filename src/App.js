@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'found';
 import Cookies from 'js-cookie';
-import { Sidebar, Items, Item, LinkClassName, Text, Icon } from './styles';
+import { Sidebar, Items, Item, LinkClassName, Text, Icon, Page } from './styles';
 import Login from './components/pages/auth/Login';
 
 class App extends Component {
@@ -78,7 +78,9 @@ class App extends Component {
             </Item>
           </Items>
         </Sidebar>
-        {this.props.children}
+        <Page>
+          {this.props.children}
+        </Page>
       </div>
     );
   }

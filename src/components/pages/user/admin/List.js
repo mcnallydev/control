@@ -1,0 +1,137 @@
+import React, { PureComponent } from 'react';
+import { Link } from 'found';
+import Card from 'react-md-card';
+import Fab from 'react-md-fab';
+import ProgressBar from 'react-md-progress-bar';
+import styled, { css } from 'react-emotion';
+import Header from '../../../master/header';
+import Tabs from '../../../master/tabs';
+import Request from '../../../../helpers/Request';
+import usersTabs from '../usersTabs.json';
+
+const LinkClassName = css`
+  width: 100%;
+  float: left;
+  padding: 12px;
+  &:hover {
+    background-color: #dadada;
+    cursor: pointer;
+  }
+`;
+
+const Icon = styled.i`
+  font-size: 48px;
+  float: left;
+  margin-right: 10px;
+`;
+
+const Info = styled.div`
+  position: relative;
+  overflow: hidden;
+  float: left;
+`;
+
+const Name = styled.h1`
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  color: #333333;
+`;
+
+const Email = styled.span`
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #737373;
+`;
+
+class AdminList extends PureComponent {
+  /**
+   * React component constructor
+   * @param  {[type]} props [description]
+   * @return {[type]}       [description]
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+      progressBar: false,
+    };
+
+  }
+
+  componentWillMount() {
+    this.httpRequest()
+  }
+
+  /**
+   * Http Request
+   */
+  httpRequest() {
+    this.setState({
+      progressBar: true
+    });
+
+    // instance request
+    const request = new Request();
+
+    // response
+    const fields = [
+      {
+        field: 'id'
+      },
+      {
+        field: 'name'
+      },
+      {
+        field: 'email'
+      },
+      {
+        field: 'active'
+      }
+    ];
+
+    request.query('userAdmins', fields).then((result) => {
+      this.setState({
+        progressBar: false,
+        users: result.data.userAdmins
+      });
+    });
+  }
+
+  renderList() {
+    let users = this.state.users.map((user, index) => {
+      return (
+        <Link key={index} className={LinkClassName} to={`/users/admin/${user.id}/edit`}>
+          <Icon className="material-icons">account_circle</Icon>
+          <Info>
+            <Name>{user.name}</Name>
+            <Email>{user.email}</Email>
+          </Info>
+        </Link>
+      );
+    });
+    return (users);
+  }
+
+  render() {
+    return (
+      <div>
+        <Header title="Administradores"></Header>
+        <Tabs items={usersTabs} selected="2" />
+        <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
+        <Card noPadding={true}>
+          {this.renderList()}
+        </Card>
+        <Link to="/users/admin/create">
+          <Fab onClick={() => {}} />
+        </Link>
+      </div>
+    );
+  }
+}
+
+/**
+ * Export component
+ */
+export default AdminList;
