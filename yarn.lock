@@ -5430,6 +5430,15 @@ react-md-input@^0.0.2:
     react-dom "^16.0.0"
     styled-components "^2.2.0"
 
+react-md-menu@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/react-md-menu/-/react-md-menu-0.0.4.tgz#ae11bec72a0d470c6e96bae430ce7a3d69e9126d"
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.0.0"
+    react-dom "^16.0.0"
+    styled-components "^2.2.0"
+
 react-md-progress-bar@^0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/react-md-progress-bar/-/react-md-progress-bar-0.0.2.tgz#7dab92643d1fb16b5fb945167cc4db3cc86c101a"
