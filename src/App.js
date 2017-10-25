@@ -59,7 +59,7 @@ class App extends Component {
               </Link>
             </Item>
             <Item>
-              <Link to="/users" className={LinkClassName} exact>
+              <Link to="/users/customer" className={LinkClassName} exact>
                 <Icon className="material-icons">people</Icon>
                 <Text>Usuarios</Text>
               </Link>
