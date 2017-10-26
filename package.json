@@ -16,8 +16,10 @@
     "react-md-card": "^0.0.4",
     "react-md-fab": "^0.0.1",
     "react-md-input": "^0.0.2",
+    "react-md-menu": "^0.0.6",
     "react-md-progress-bar": "^0.0.2",
     "react-md-switch": "^0.0.3",
+    "react-notify-toast": "^0.4.0",
     "react-scripts": "1.0.14"
   },
   "scripts": {
