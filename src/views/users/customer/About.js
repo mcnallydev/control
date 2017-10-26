@@ -119,6 +119,12 @@ class ViewAbout extends PureComponent {
       },
       {
         field: 'charge'
+      },
+      {
+        field: 'emergency_contact_name'
+      },
+      {
+        field: 'emergency_contact_number'
       }
     ];
 
@@ -229,6 +235,70 @@ class ViewAbout extends PureComponent {
       });
     }
 
+    // education_level
+    if (this.state.education_level !== '') {
+      inputs.push({
+        field: 'education_level',
+        value: parseInt(this.state.education_level, 0)
+      });
+    }
+
+    // current_activity
+    if (this.state.current_activity !== '') {
+      inputs.push({
+        field: 'current_activity',
+        value: parseInt(this.state.current_activity, 0)
+      });
+    }
+
+    // work_center
+    if (this.state.work_center !== '') {
+      inputs.push({
+        field: 'work_center',
+        value: this.state.work_center
+      });
+    }
+
+    // charge
+    if (this.state.charge !== '') {
+      inputs.push({
+        field: 'charge',
+        value: this.state.charge
+      });
+    }
+
+    // educational_center
+    if (this.state.educational_center !== '') {
+      inputs.push({
+        field: 'educational_center',
+        value: this.state.educational_center
+      });
+    }
+
+    // grade
+    if (this.state.grade !== '') {
+      inputs.push({
+        field: 'grade',
+        value: this.state.grade
+      });
+    }
+
+    // emergency_contact_name
+    if (this.state.emergency_contact_name !== '') {
+      inputs.push({
+        field: 'emergency_contact_name',
+        value: this.state.emergency_contact_name
+      });
+    }
+
+    // emergency_contact_number
+    if (this.state.emergency_contact_number !== '') {
+      inputs.push({
+        field: 'emergency_contact_number',
+        value: parseInt(this.state.emergency_contact_number, 0)
+      });
+    }
+
     // response
     const fields = [
       {
@@ -266,7 +336,7 @@ class ViewAbout extends PureComponent {
         <Notifications />
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Section>
-          <Title>Datos personales</Title>
+          <Title><i className="fa fa-id-card-o" aria-hidden="true"></i> Datos personales</Title>
           <Card>
             <FormGroup>
               <FormLabel>Fecha de nacimiento:</FormLabel>
@@ -284,7 +354,29 @@ class ViewAbout extends PureComponent {
         </Section>
 
         <Section>
-          <Title>Cantidad de hijos</Title>
+          <Title><i className="fa fa-medkit" aria-hidden="true"></i> Contacto de emergencia</Title>
+          <Card>
+            <FormGroup>
+              <Input
+                label="Nombre y apellidos"
+                type="text"
+                value={this.state.emergency_contact_name}
+                onChange={ (e) => this.onChange(e, 'emergency_contact_name') }
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                label="Número"
+                type="text"
+                value={this.state.emergency_contact_number}
+                onChange={ (e) => this.onChange(e, 'emergency_contact_number') }
+              />
+            </FormGroup>
+          </Card>
+        </Section>
+
+        <Section>
+          <Title><i className="fa fa-child" aria-hidden="true"></i> Cantidad de hijos</Title>
           <Card noPadding={true}>
             <Selectable
               width="93.3px"
@@ -344,7 +436,7 @@ class ViewAbout extends PureComponent {
         </Section>
 
         <Section>
-          <Title>Sexo</Title>
+          <Title><i className="fa fa-venus-mars fa-fw" aria-hidden="true"></i> Sexo</Title>
           <Card noPadding={true}>
             <Selectable
               width="280px"
@@ -353,7 +445,7 @@ class ViewAbout extends PureComponent {
               identifier="sex"
               onClick={this.onChange}
             >
-              <i className="fa fa-mars fa-fw" aria-hidden="true"></i> HOMBRE
+              <i className="fa fa-mars fa-fw" aria-hidden="true"></i> MASCULINO
             </Selectable>
             <Selectable
               width="280px"
@@ -362,13 +454,13 @@ class ViewAbout extends PureComponent {
               identifier="sex"
               onClick={this.onChange}
             >
-              <i className="fa fa-venus fa-fw" aria-hidden="true"></i> MUJER
+              <i className="fa fa-venus fa-fw" aria-hidden="true"></i> FEMENINO
             </Selectable>
           </Card>
         </Section>
 
         <Section>
-          <Title>Talla</Title>
+          <Title><i className="fa fa-exchange" aria-hidden="true"></i> Talla</Title>
           <Card noPadding={true}>
             <Selectable
               width="186.6px"
@@ -401,7 +493,7 @@ class ViewAbout extends PureComponent {
         </Section>
 
         <Section>
-          <Title>Contacto</Title>
+          <Title><i className="fa fa-phone" aria-hidden="true"></i> Contacto</Title>
           <Card>
             <FormGroup>
               <Input
@@ -428,6 +520,126 @@ class ViewAbout extends PureComponent {
                 value={this.state.office_number}
                 onChange={ (e) => this.onChange(e, 'office_number') }
                 pattern="patternNumber"
+              />
+            </FormGroup>
+          </Card>
+        </Section>
+
+        <Section>
+          <Title><i className="fa fa-graduation-cap" aria-hidden="true"></i> Nivel educativo</Title>
+          <Card noPadding={true}>
+            <Selectable
+              width="140px"
+              value={this.state.education_level}
+              selected="0"
+              identifier="education_level"
+              onClick={this.onChange}
+            >
+              ESTUDIANTE
+            </Selectable>
+            <Selectable
+              width="140px"
+              value={this.state.education_level}
+              selected="1"
+              identifier="education_level"
+              onClick={this.onChange}
+            >
+              BACHILLER
+            </Selectable>
+            <Selectable
+              width="140px"
+              value={this.state.education_level}
+              selected="2"
+              identifier="education_level"
+              onClick={this.onChange}
+            >
+              TÉCNICO
+            </Selectable>
+            <Selectable
+              width="140px"
+              value={this.state.education_level}
+              selected="3"
+              identifier="education_level"
+              onClick={this.onChange}
+            >
+              PROFESIONAL
+            </Selectable>
+          </Card>
+          <Card>
+            <FormGroup>
+              <Input
+                label="Centro de estudio"
+                type="text"
+                value={this.state.educational_center}
+                onChange={ (e) => this.onChange(e, 'educational_center') }
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                label="Nivel/grado académico"
+                type="text"
+                value={this.state.grade}
+                onChange={ (e) => this.onChange(e, 'grade') }
+              />
+            </FormGroup>
+          </Card>
+        </Section>
+
+        <Section>
+          <Title><i className="fa fa-briefcase" aria-hidden="true"></i> Actividad actual</Title>
+          <Card noPadding={true}>
+            <Selectable
+              width="140px"
+              value={this.state.current_activity}
+              selected="0"
+              identifier="current_activity"
+              onClick={this.onChange}
+            >
+              ESTUDIANTE
+            </Selectable>
+            <Selectable
+              width="140px"
+              value={this.state.current_activity}
+              selected="1"
+              identifier="current_activity"
+              onClick={this.onChange}
+            >
+              EMPLEADO
+            </Selectable>
+            <Selectable
+              width="140px"
+              value={this.state.current_activity}
+              selected="2"
+              identifier="current_activity"
+              onClick={this.onChange}
+            >
+              INDEPENDIENTE
+            </Selectable>
+            <Selectable
+              width="140px"
+              value={this.state.current_activity}
+              selected="3"
+              identifier="current_activity"
+              onClick={this.onChange}
+            >
+              EMPRESARIO
+            </Selectable>
+          </Card>
+          <Card>
+            <FormGroup>
+              <Input
+                label="Centro de trabajo"
+                type="text"
+                value={this.state.work_center}
+                onChange={ (e) => this.onChange(e, 'work_center') }
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                label="Cargo/puesto"
+                type="text"
+                value={this.state.charge}
+                onChange={ (e) => this.onChange(e, 'charge') }
               />
             </FormGroup>
           </Card>
