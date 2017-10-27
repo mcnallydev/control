@@ -340,7 +340,27 @@ class ViewAbout extends PureComponent {
           <Card>
             <FormGroup>
               <FormLabel>Fecha de nacimiento:</FormLabel>
-              <Birthday identifier="birthdate" onChange={this.onChange} />
+              <Birthday
+                current={this.state.birthdate}
+                identifier="birthdate"
+                onChange={this.onChange}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                label="Nombre"
+                type="text"
+                value={this.state.name}
+                onChange={ (e) => this.onChange(e, 'name') }
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
+                label="Correo electrónico"
+                type="text"
+                value={this.state.email}
+                onChange={ (e) => this.onChange(e, 'email') }
+              />
             </FormGroup>
             <FormGroup>
               <Input
