@@ -62,7 +62,7 @@ class List extends PureComponent {
   }
 
   componentWillMount() {
-    this.httpRequest()
+    this.httpRequest();
   }
 
   /**

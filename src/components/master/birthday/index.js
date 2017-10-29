@@ -36,7 +36,7 @@ class Birthday extends Component {
 
   componentWillReceiveProps(nextProps) {
     let splitDate = nextProps.current.split('/');
-    if (splitDate.length !== 0) {
+    if (splitDate.length === 3) {
       let year = splitDate[2];
       let month = splitDate[1];
       let day = splitDate[0];

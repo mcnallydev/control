@@ -9,6 +9,7 @@
     "found": "^0.3.4",
     "graphql-tag": "^2.5.0",
     "js-cookie": "^2.1.4",
+    "moment": "^2.19.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-emotion": "^8.0.8",

@@ -10,6 +10,7 @@ import UsersCustomerCreate from './views/users/customer/Create';
 import UsersCustomerPayments from './views/users/customer/Payments';
 import UsersCustomerAssists from './views/users/customer/Assists';
 import UsersCustomerProgress from './views/users/customer/Progress';
+import UsersCustomerProgressCreate from './views/users/customer/ProgressCreate';
 import UsersCustomerAbout from './views/users/customer/About';
 // user coach
 import UsersCoachList from './views/users/coach/List';
@@ -33,6 +34,7 @@ const BrowserRouter = createBrowserRouter({
           <Route path="/:id/payments" Component={UsersCustomerPayments} />
           <Route path="/:id/assists" Component={UsersCustomerAssists} />
           <Route path="/:id/progress" Component={UsersCustomerProgress} />
+          <Route path="/:id/progress/create" Component={UsersCustomerProgressCreate} />
           <Route path="/:id/about" Component={UsersCustomerAbout} />
 
         </Route>

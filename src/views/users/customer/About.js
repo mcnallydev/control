@@ -14,6 +14,7 @@ export const Buttons = styled.div`
   margin: 20px;
   text-align: right;
 `;
+
 export const Section = styled.div`
   position: relative;
   margin: 0 auto;
