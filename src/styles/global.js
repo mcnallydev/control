@@ -45,10 +45,17 @@ export const Error = styled.div`
 
 export const Table = styled.table`
   width: 100%;
+  border-collapse: collapse;
+`;
+
+export const TrHeader = styled.tr`
+
 `;
 
 export const Tr = styled.tr`
-
+  &:hover {
+    background-color: rgba(158, 158, 158, .2);
+  }
 `;
 
 export const Th = styled.th`
@@ -77,5 +84,14 @@ export const Td = styled.td`
 
 export const SubText = styled.span`
   font-size: 12px;
+  color: #333333;
+`;
+
+export const ColumnLink = css`
+  float:left;
+  width: 100%;
+  height: 100%;
+  line-height: 55px;
+  text-decoration: none;
   color: #333333;
 `;

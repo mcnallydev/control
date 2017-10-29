@@ -20,6 +20,10 @@ import UsersCoachCreate from './views/users/coach/Create';
 import UsersAdminList from './views/users/admin/List';
 import UsersAdminUpdate from './views/users/admin/Update';
 import UsersAdminCreate from './views/users/admin/Create';
+// disciplines
+import DisciplinesList from './views/disciplines/List';
+import DisciplinesCreate from './views/disciplines/Create';
+import DisciplinesUpdate from './views/disciplines/Update';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -36,7 +40,6 @@ const BrowserRouter = createBrowserRouter({
           <Route path="/:id/progress" Component={UsersCustomerProgress} />
           <Route path="/:id/progress/create" Component={UsersCustomerProgressCreate} />
           <Route path="/:id/about" Component={UsersCustomerAbout} />
-
         </Route>
         <Route path="/coach">
           <Route path="/" Component={UsersCoachList} />
@@ -48,6 +51,11 @@ const BrowserRouter = createBrowserRouter({
           <Route path="/create" Component={UsersAdminCreate} />
           <Route path="/:id/update" Component={UsersAdminUpdate} />
         </Route>
+      </Route>
+      <Route path="/disciplines">
+        <Route path="/" Component={DisciplinesList} />
+        <Route path="/create" Component={DisciplinesCreate} />
+        <Route path="/:id/update" Component={DisciplinesUpdate} />
       </Route>
     </Route>
   ),
