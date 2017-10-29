@@ -34,6 +34,43 @@ class Birthday extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    let splitDate = nextProps.current.split('/');
+    if (splitDate.length !== 0) {
+      let year = splitDate[2];
+      let month = splitDate[1];
+      let day = splitDate[0];
+
+      this.setValues(year, month, day);
+    }
+  }
+
+  setValues(year, month, day) {
+    let selectedYear = years.filter((item) => { return (item.value === year); });
+    let selectedMonth = months.filter((item) => { return (item.value === month); });
+    let selectedDay = days.filter((item) => { return (item.value === day); });
+    this.setState({
+      labels : Object.assign({}, this.state.labels, {
+        birthdayYear: selectedYear[0].label,
+        birthdayMonth: selectedMonth[0].label,
+        birthdayDay: selectedDay[0].label
+      }),
+      form : Object.assign({}, this.state.form, {
+        birthdayYear: selectedYear[0].value,
+        birthdayMonth: selectedMonth[0].value,
+        birthdayDay: selectedDay[0].value
+      }),
+    });
+  }
+
+  setMonth(value) {
+    let selected = months.filter((item) => { return (item.value === value); });
+    this.setState({
+      labels : Object.assign({}, this.state.labels, {birthdayMonth: selected[0].label}),
+      form : Object.assign({}, this.state.form, {birthdayMonth: selected[0].value}),
+    });
+  }
+
   propOnChange() {
     // call onChange prop
     if (this.state.form.birthdayYear !== '' && this.state.form.birthdayMonth !== '' && this.state.form.birthdayDay !== '') {
@@ -122,6 +159,7 @@ class Birthday extends Component {
 }
 
 Birthday.propTypes = {
+  current: PropTypes.string,
   identifier: PropTypes.string.isRequired
 }
 

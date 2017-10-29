@@ -564,8 +564,8 @@ babel-loader@7.1.1:
     mkdirp "^0.5.1"
 
 babel-macros@^1.0.2:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/babel-macros/-/babel-macros-1.1.1.tgz#9684edf6e85d568a88ff1ce9e487e9d1c8e46bdc"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/babel-macros/-/babel-macros-1.2.0.tgz#39e47ed6d286d4a98f1948d8bab45dac17e4e2d4"
   dependencies:
     cosmiconfig "3.1.0"
 
@@ -1340,12 +1340,12 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000750"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000750.tgz#3f1f85c92c9134edda735695e369d7e176752b75"
+  version "1.0.30000752"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000752.tgz#daa129d54ce700e94ad14388bdef514ec1e2dd54"
 
 caniuse-lite@^1.0.30000697, caniuse-lite@^1.0.30000744:
-  version "1.0.30000750"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000750.tgz#38ad19aa4c6d88da38e8900d3666b4e3bbb65c22"
+  version "1.0.30000752"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000752.tgz#0a79df520669d92ddc7f57406eed935948263130"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -3283,8 +3283,8 @@ ieee754@^1.1.4:
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
 ignore@^3.3.3:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.6.tgz#b6f3196b38ed92f0c86e52f6f79b7fc4c8266c8d"
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.7.tgz#612289bfb3c220e186a58118618d5be8c1bab021"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -5441,6 +5441,16 @@ react-md-card@^0.0.4:
     react-dom "^16.0.0"
     styled-components "^2.2.0"
 
+react-md-dialog@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/react-md-dialog/-/react-md-dialog-0.0.3.tgz#6e28b6ec29f9b298404a6c5a80b3d9259d9b83ce"
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.0.0"
+    react-dom "^16.0.0"
+    react-md-progress-bar "^0.0.1"
+    styled-components "^2.2.0"
+
 react-md-fab@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/react-md-fab/-/react-md-fab-0.0.1.tgz#32b4d10071b1c48c63ff6e855b0763a8f8e31d8e"
@@ -5462,6 +5472,15 @@ react-md-input@^0.0.2:
 react-md-menu@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-md-menu/-/react-md-menu-0.0.6.tgz#c685448214aadc7a814f0c2c3c8e8fc7bbe98f5d"
+  dependencies:
+    prop-types "^15.6.0"
+    react "^16.0.0"
+    react-dom "^16.0.0"
+    styled-components "^2.2.0"
+
+react-md-progress-bar@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-md-progress-bar/-/react-md-progress-bar-0.0.1.tgz#7f830d21a932ed06366c866eac52e14b6f25a194"
   dependencies:
     prop-types "^15.6.0"
     react "^16.0.0"
