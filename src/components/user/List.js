@@ -15,7 +15,7 @@ const LinkClassName = css`
   float: left;
   padding: 12px;
   &:hover {
-    background-color: #dadada;
+    background-color: #eeeeee;
     cursor: pointer;
   }
 `;

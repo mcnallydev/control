@@ -47,7 +47,12 @@ export const LinkClassName = css`
   width: 100%;
   &:hover {
     text-decoration: none;
+    background-color: #eeeeee;
   }
+`;
+
+export const LinkActiveClassName = css`
+  color: #3b88c3;
 `;
 
 export const Text = styled.span`

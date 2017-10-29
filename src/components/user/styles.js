@@ -23,7 +23,7 @@ export const LinkClassName = css`
   padding: 10px 15px;
   color: #4285f4;
   &:hover {
-    background-color: rgba(158, 158, 158, .2);
+    background-color: #eeeeee;
     border-radius: 2px;
   }
 `;

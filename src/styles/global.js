@@ -23,7 +23,7 @@ export const LinkClassName = css`
   padding: 10px 15px;
   color: #4285f4;
   &:hover {
-    background-color: rgba(158, 158, 158, .2);
+    background-color: #eeeeee;
     border-radius: 2px;
   }
 `;
@@ -49,12 +49,12 @@ export const Table = styled.table`
 `;
 
 export const TrHeader = styled.tr`
-
+  background-color: #fafafa;
 `;
 
 export const Tr = styled.tr`
   &:hover {
-    background-color: rgba(158, 158, 158, .2);
+    background-color: #eeeeee;
   }
 `;
 
