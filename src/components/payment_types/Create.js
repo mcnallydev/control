@@ -155,6 +155,7 @@ class Create extends PureComponent {
               type="text"
               value={this.state.form.cost}
               error={this.state.errors.cost}
+              pattern="patternDecimal"
               onChange={ this.onChange('cost') }
             />
             <Input
@@ -162,14 +163,14 @@ class Create extends PureComponent {
               type="text"
               value={this.state.form.days}
               error={this.state.errors.days}
-              pattern="patternDecimal"
+              pattern="patternInteger"
               onChange={ this.onChange('days') }
             />
             <ButtonsContainer>
               <ButtonContainer>
                 <Button onClick={ this.onClick } primary={true} label="Crear" />
               </ButtonContainer>
-              <Link to="/disciplines" className={LinkClassName} exact>
+              <Link to="/payment_types" className={LinkClassName} exact>
                 Cancelar
               </Link>
             </ButtonsContainer>

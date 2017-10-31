@@ -81,10 +81,10 @@ class Update extends PureComponent {
       const { form } = this.state;
       const newForm = {
         ...form,
-        name: result.data.payment_type.name,
-        cost: `${result.data.payment_type.cost}`,
-        days: `${result.data.payment_type.days}`,
-        active: result.data.payment_type.active
+        name: result.data.paymentType.name,
+        cost: `${result.data.paymentType.cost}`,
+        days: `${result.data.paymentType.days}`,
+        active: result.data.paymentType.active
       };
       this.setState({
         progressBar: false,
@@ -207,7 +207,7 @@ class Update extends PureComponent {
 
     // make http request
     request.mutate('PaymentTypeUpdate', 'paymentTypeUpdate', inputs, fields, false).then((result) => {
-      window.location = '/disciplines';
+      window.location = '/payment_types';
     }).catch((error) => {
       this.setState({
         progressBar: false,
@@ -219,7 +219,7 @@ class Update extends PureComponent {
   render() {
     return (
       <div>
-        <Header title="Crear tipo de pago"></Header>
+        <Header title="Actualizar tipo de pago"></Header>
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Wrapper>
           <Error>{this.state.error}</Error>
@@ -240,12 +240,12 @@ class Update extends PureComponent {
               onChange={ this.onChange('cost') }
             />
             <Input
-              label="Límite de participantes"
+              label="Días"
               type="text"
-              value={this.state.form.limit}
-              error={this.state.errors.limit}
+              value={this.state.form.days}
+              error={this.state.errors.days}
               pattern="patternInteger"
-              onChange={ this.onChange('limit') }
+              onChange={ this.onChange('days') }
             />
             <Switch
               id={'switch'}
