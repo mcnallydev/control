@@ -19,13 +19,9 @@ class Create extends PureComponent {
     this.state = {
       form: {
         name: '',
-        cost: '',
-        days: '',
       },
       errors: {
         name: '',
-        cost: '',
-        days: '',
       },
       error: '',
       progressBar: false,
@@ -71,15 +67,7 @@ class Create extends PureComponent {
     let self = this;
     self.validateInput('name', (nameStatus) => {
       if (nameStatus) {
-        self.validateInput('cost', (costStatus) => {
-          if (costStatus) {
-            self.validateInput('days', (daysStatus) => {
-              if (daysStatus) {
-                this.httpRequest();
-              }
-            });
-          }
-        });
+        this.httpRequest();
       }
     });
   }
@@ -101,21 +89,13 @@ class Create extends PureComponent {
       {
         field: 'name',
         value: this.state.form.name,
-      },
-      {
-        field: 'cost',
-        value: parseFloat(this.state.form.cost),
-      },
-      {
-        field: 'days',
-        value: parseInt(this.state.form.days, 0),
       }
     ];
 
     // response
     const fields = [
       {
-        field: 'payment_type',
+        field: 'payment_method',
         fields: [
           {
             field: 'id'
@@ -125,8 +105,8 @@ class Create extends PureComponent {
     ];
 
     // make http request
-    request.mutate('PaymentTypeCreate', 'paymentTypeCreate', inputs, fields, false).then((result) => {
-      window.location = '/payment_types';
+    request.mutate('PaymentMethodCreate', 'PaymentMethodCreate', inputs, fields, false).then((result) => {
+      window.location = '/payment_methods';
     }).catch((error) => {
       this.setState({
         progressBar: false,
@@ -138,7 +118,7 @@ class Create extends PureComponent {
   render() {
     return (
       <div>
-        <Header title="Crear tipo de pago"></Header>
+        <Header title="Crear método de pago"></Header>
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Wrapper>
           <Error>{this.state.error}</Error>
@@ -149,21 +129,6 @@ class Create extends PureComponent {
               value={this.state.form.name}
               error={this.state.errors.name}
               onChange={ this.onChange('name') }
-            />
-            <Input
-              label="Precio"
-              type="text"
-              value={this.state.form.cost}
-              error={this.state.errors.cost}
-              onChange={ this.onChange('cost') }
-            />
-            <Input
-              label="Días"
-              type="text"
-              value={this.state.form.days}
-              error={this.state.errors.days}
-              pattern="patternDecimal"
-              onChange={ this.onChange('days') }
             />
             <ButtonsContainer>
               <ButtonContainer>

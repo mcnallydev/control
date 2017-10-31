@@ -28,10 +28,12 @@ import DisciplinesUpdate from './views/disciplines/Update';
 import BillingList from './views/billing/List';
 // payment_methods
 import PaymentMethodsList from './views/payment_methods/List';
+import PaymentMethodsCreate from './views/payment_methods/Create';
+import PaymentMethodsUpdate from './views/payment_methods/Update';
 // payment_types
 import PaymentTypesList from './views/payment_types/List';
 import PaymentTypesCreate from './views/payment_types/Create';
-
+import PaymentTypesUpdate from './views/payment_types/Update';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -70,10 +72,13 @@ const BrowserRouter = createBrowserRouter({
       </Route>
       <Route path="/payment_methods">
         <Route path="/" Component={PaymentMethodsList} />
+        <Route path="/create" Component={PaymentMethodsCreate} />
+        <Route path="/:id/update" Component={PaymentMethodsUpdate} />
       </Route>
       <Route path="/payment_types">
         <Route path="/" Component={PaymentTypesList} />
         <Route path="/create" Component={PaymentTypesCreate} />
+        <Route path="/:id/update" Component={PaymentTypesUpdate} />
       </Route>
     </Route>
   ),

@@ -21,14 +21,10 @@ class Update extends PureComponent {
     this.state = {
       form: {
         name: '',
-        cost: '',
-        days: '',
         active: false
       },
       errors: {
         name: '',
-        cost: '',
-        days: '',
         active: false
       },
       error: '',
@@ -59,12 +55,6 @@ class Update extends PureComponent {
         field: 'name'
       },
       {
-        field: 'cost'
-      },
-      {
-        field: 'days'
-      },
-      {
         field: 'active'
       }
     ];
@@ -77,14 +67,12 @@ class Update extends PureComponent {
       }
     ]
 
-    request.query('paymentType', fields, args).then((result) => {
+    request.query('paymentMethod', fields, args).then((result) => {
       const { form } = this.state;
       const newForm = {
         ...form,
-        name: result.data.payment_type.name,
-        cost: `${result.data.payment_type.cost}`,
-        days: `${result.data.payment_type.days}`,
-        active: result.data.payment_type.active
+        name: result.data.payment_method.name,
+        active: result.data.payment_method.active
       };
       this.setState({
         progressBar: false,
@@ -144,15 +132,7 @@ class Update extends PureComponent {
     let self = this;
     self.validateInput('name', (nameStatus) => {
       if (nameStatus) {
-        self.validateInput('cost', (costStatus) => {
-          if (costStatus) {
-            self.validateInput('days', (daysStatus) => {
-              if (daysStatus) {
-                this.httpRequest();
-              }
-            });
-          }
-        });
+        this.httpRequest();
       }
     });
   }
@@ -180,14 +160,6 @@ class Update extends PureComponent {
         value: this.state.form.name,
       },
       {
-        field: 'cost',
-        value: parseFloat(this.state.form.cost),
-      },
-      {
-        field: 'days',
-        value: parseInt(this.state.form.days, 0),
-      },
-      {
         field: 'active',
         value: this.state.form.active
       }
@@ -196,7 +168,7 @@ class Update extends PureComponent {
     // response
     const fields = [
       {
-        field: 'payment_type',
+        field: 'payment_method',
         fields: [
           {
             field: 'id'
@@ -206,7 +178,7 @@ class Update extends PureComponent {
     ];
 
     // make http request
-    request.mutate('PaymentTypeUpdate', 'paymentTypeUpdate', inputs, fields, false).then((result) => {
+    request.mutate('PaymentMethodUpdate', 'paymentMethodUpdate', inputs, fields, false).then((result) => {
       window.location = '/disciplines';
     }).catch((error) => {
       this.setState({
@@ -231,22 +203,6 @@ class Update extends PureComponent {
               error={this.state.errors.name}
               onChange={ this.onChange('name') }
             />
-            <Input
-              label="Precio"
-              type="text"
-              value={this.state.form.cost}
-              error={this.state.errors.cost}
-              pattern="patternDecimal"
-              onChange={ this.onChange('cost') }
-            />
-            <Input
-              label="Límite de participantes"
-              type="text"
-              value={this.state.form.limit}
-              error={this.state.errors.limit}
-              pattern="patternInteger"
-              onChange={ this.onChange('limit') }
-            />
             <Switch
               id={'switch'}
               checked={this.state.form.active}
@@ -256,7 +212,7 @@ class Update extends PureComponent {
               <ButtonContainer>
                 <Button onClick={ this.onClick } primary={true} label="Actualizar" />
               </ButtonContainer>
-              <Link to="/payment_types" className={LinkClassName} exact>
+              <Link to="/payment_methods" className={LinkClassName} exact>
                 Cancelar
               </Link>
             </ButtonsContainer>

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Billing from '../../components/billing/Billing';
+import List from '../../components/payment_types/List';
 
 class ViewList extends PureComponent {
 
@@ -9,7 +10,7 @@ class ViewList extends PureComponent {
         title="Tipos de pago"
         tabSelected="2"
       >
-        <div>Demo</div>
+        <List />
       </Billing>
     );
   }
