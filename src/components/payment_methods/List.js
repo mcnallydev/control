@@ -53,23 +53,26 @@ class List extends PureComponent {
     request.query('paymentMethods', fields).then((result) => {
       this.setState({
         progressBar: false,
-        records: result.data.payment_methods
+        records: result.data.paymentMethods
       });
     });
   }
 
   renderBody() {
-    const list = this.state.records.map((item, index) => {
-      return (
-          <Tr key={index}>
-            <Td>
-              <Link className={ColumnLink} to={`/payment_methods/${item.id}/update`}>
-                {item.name}
-              </Link>
-            </Td>
-          </Tr>
-      );
-    });
+    let list = null;
+    if (this.state.records) {
+      list = this.state.records.map((item, index) => {
+        return (
+            <Tr key={index}>
+              <Td>
+                <Link className={ColumnLink} to={`/payment_methods/${item.id}/update`}>
+                  {item.name}
+                </Link>
+              </Td>
+            </Tr>
+        );
+      });
+    }
 
     return (
       <tbody>

@@ -71,8 +71,8 @@ class Update extends PureComponent {
       const { form } = this.state;
       const newForm = {
         ...form,
-        name: result.data.payment_method.name,
-        active: result.data.payment_method.active
+        name: result.data.paymentMethod.name,
+        active: result.data.paymentMethod.active
       };
       this.setState({
         progressBar: false,
@@ -179,7 +179,7 @@ class Update extends PureComponent {
 
     // make http request
     request.mutate('PaymentMethodUpdate', 'paymentMethodUpdate', inputs, fields, false).then((result) => {
-      window.location = '/disciplines';
+      window.location = '/payment_methods';
     }).catch((error) => {
       this.setState({
         progressBar: false,
@@ -191,7 +191,7 @@ class Update extends PureComponent {
   render() {
     return (
       <div>
-        <Header title="Crear tipo de pago"></Header>
+        <Header title="Actualizar método de pago"></Header>
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
         <Wrapper>
           <Error>{this.state.error}</Error>

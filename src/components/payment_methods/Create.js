@@ -105,7 +105,7 @@ class Create extends PureComponent {
     ];
 
     // make http request
-    request.mutate('PaymentMethodCreate', 'PaymentMethodCreate', inputs, fields, false).then((result) => {
+    request.mutate('PaymentMethodCreate', 'paymentMethodCreate', inputs, fields, false).then((result) => {
       window.location = '/payment_methods';
     }).catch((error) => {
       this.setState({
@@ -134,7 +134,7 @@ class Create extends PureComponent {
               <ButtonContainer>
                 <Button onClick={ this.onClick } primary={true} label="Crear" />
               </ButtonContainer>
-              <Link to="/disciplines" className={LinkClassName} exact>
+              <Link to="/payment_methods" className={LinkClassName} exact>
                 Cancelar
               </Link>
             </ButtonsContainer>
