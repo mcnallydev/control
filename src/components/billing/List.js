@@ -42,17 +42,26 @@ class List extends PureComponent {
         field: 'id'
       },
       {
-        field: 'name'
+        field: 'payment_date'
       },
       {
-        field: 'active'
+        field: 'payment_amount'
+      },
+      {
+        field: 'discount_amount'
+      },
+      {
+        field: 'invoice_number'
+      },
+      {
+        field: 'payment_type_quantity'
       }
     ];
 
-    request.query('paymentMethods', fields).then((result) => {
+    request.query('payments', fields).then((result) => {
       this.setState({
         progressBar: false,
-        records: result.data.paymentMethods
+        records: result.data.disciplines
       });
     });
   }
@@ -64,8 +73,18 @@ class List extends PureComponent {
         return (
             <Tr key={index}>
               <Td>
-                <Link className={ColumnLink} to={`/payment_methods/${item.id}/update`}>
+                <Link className={ColumnLink} to={`/disciplines/${item.id}/update`}>
                   {item.name}
+                </Link>
+              </Td>
+              <Td>
+                <Link className={ColumnLink} to={`/disciplines/${item.id}/update`}>
+                  {item.cost}
+                </Link>
+              </Td>
+              <Td>
+                <Link className={ColumnLink} to={`/disciplines/${item.id}/update`}>
+                  {item.limit}
                 </Link>
               </Td>
             </Tr>
@@ -88,13 +107,20 @@ class List extends PureComponent {
           <Table>
             <thead>
               <TrHeader>
-                <Th>Nombre</Th>
+                <Th>Fecha</Th>
+                <Th>Cliente</Th>
+                <Th>Disciplina</Th>
+                <Th>Tipo de pago</Th>
+                <Th>Método de pago</Th>
+                <Th>Monto</Th>
+                <Th>Descuento</Th>
+                <Th>Total facturado</Th>
               </TrHeader>
             </thead>
             {this.renderBody()}
           </Table>
         </Card>
-        <Link to="/payment_methods/create">
+        <Link to="/billing/create">
           <Fab onClick={() => {}} />
         </Link>
       </div>

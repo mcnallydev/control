@@ -26,6 +26,7 @@ import DisciplinesCreate from './views/disciplines/Create';
 import DisciplinesUpdate from './views/disciplines/Update';
 // billing
 import BillingList from './views/billing/List';
+import BillingCreate from './views/billing/Create';
 // payment_methods
 import PaymentMethodsList from './views/payment_methods/List';
 import PaymentMethodsCreate from './views/payment_methods/Create';
@@ -69,6 +70,7 @@ const BrowserRouter = createBrowserRouter({
       </Route>
       <Route path="/billing">
         <Route path="/" Component={BillingList} />
+        <Route path="/create" Component={BillingCreate} />
       </Route>
       <Route path="/payment_methods">
         <Route path="/" Component={PaymentMethodsList} />

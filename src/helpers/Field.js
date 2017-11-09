@@ -83,15 +83,26 @@ class Field {
 
   static parseValue(value) {
     switch (typeof value) {
-    case 'string':
-      return `"${value}"`
-      break;
-    case 'number':
-      return value
-      break;
-    case 'boolean':
-      return value
-      break;
+      case 'string':
+        return `"${value}"`;
+        break;
+      case 'number':
+        return value;
+        break;
+      case 'boolean':
+        return value;
+        break;
+
+      case 'object':
+        if (Array.isArray(value)) {
+          let strings = value.map((item) => {
+            return `"${item}"`;
+          });
+          return `[${strings.join(',')}]`;
+        } else {
+          return '';
+        }
+        break;
     }
   }
 

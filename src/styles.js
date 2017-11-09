@@ -1,5 +1,9 @@
 import styled, { css } from 'react-emotion';
 
+export const Master = styled.div`
+  height: 100%;
+`;
+
 export const Sidebar = styled.div`
   position: fixed;
   overflow-y: auto;
@@ -73,5 +77,5 @@ export const Icon = styled.i`
 export const Page = styled.div`
   margin-left: 272px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 `;

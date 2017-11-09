@@ -57,7 +57,14 @@ class ViewAbout extends PureComponent {
       }
     ];
 
-    request.query('progressList', fields).then((result) => {
+    const args = [
+      {
+        field: 'user_id',
+        value: this.props.params.id
+      }
+    ];
+
+    request.query('progressList', fields, args).then((result) => {
       this.setState({
         progressBar: false,
         records: result.data.progressList

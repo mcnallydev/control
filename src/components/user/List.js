@@ -122,7 +122,7 @@ class List extends PureComponent {
         <Header title={this.props.title}></Header>
         <Tabs items={usersTabs} selected={this.props.tabSelected} />
         <ProgressBar show={this.state.progressBar} overlay={this.state.progressBar} />
-        <Card noPadding={true}>
+        <Card noPadding={true} overflowHidden={true}>
           {this.renderList()}
         </Card>
         <Link to={`/users/${this.props.userType}/create`}>

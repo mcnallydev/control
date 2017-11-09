@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'found';
 import Cookies from 'js-cookie';
-import { Sidebar, Items, Item, LinkClassName, LinkActiveClassName, Text, Icon, Page } from './styles';
+import { Sidebar, Items, Item, LinkClassName, LinkActiveClassName, Text, Icon, Page, Master } from './styles';
 import Login from './components/pages/auth/Login';
 
 class App extends Component {
@@ -31,7 +31,7 @@ class App extends Component {
 
   renderDashboard() {
     return (
-      <div>
+      <Master>
         <Sidebar>
           <Items>
             <Item>
@@ -81,7 +81,7 @@ class App extends Component {
         <Page>
           {this.props.children}
         </Page>
-      </div>
+      </Master>
     );
   }
 

@@ -25,3 +25,22 @@ export const FormInputDropdownLabel = styled.div`
   width: ${props => props.width};
   padding: 10px 0 10px 15px;
 `;
+
+export const LabelFlat = styled.div`
+  cursor: pointer;
+  background-color: #FFFFFF;
+  color: #212121;
+`;
+
+export const Label = styled.label`
+  color: #757575;
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 2px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+`;
