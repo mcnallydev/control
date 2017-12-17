@@ -11,7 +11,7 @@ class Request {
     this.token = Cookies.get('Authorization');
     this.client = new ApolloClient({
       networkInterface: createNetworkInterface({
-        uri: `http://${self.tentant.toLowerCase()}.lvh.me:5000`,
+        uri: `http://${self.tentant.toLowerCase()}.control.fitness`,
         opts: {
           headers: {
             'authorization': self.token

@@ -43,9 +43,10 @@ class Field {
 
     // check if inputs is set and have items
     if (args && args.length !== 0) {
-      args.map((item) => {
+      argsArray = args.map((item) => {
         // add arg to array
-        argsArray.push(`${item.field}: ${Field.parseValue(item.value)}`)
+        //argsArray.push();
+        return `${item.field}: ${Field.parseValue(item.value)}`
       });
     }
 
@@ -53,7 +54,7 @@ class Field {
     if (fields && fields.length !== 0) {
 
       // We go through each of the elements
-      fields.map((item) => {
+      fields.forEach((item) => {
 
         // Check if item has fields
         if (item.hasOwnProperty('fields')) {
@@ -82,28 +83,32 @@ class Field {
   }
 
   static parseValue(value) {
+    let response = '';
     switch (typeof value) {
       case 'string':
-        return `"${value}"`;
+        response = `"${value}"`;
         break;
       case 'number':
-        return value;
+        response = value;
         break;
       case 'boolean':
-        return value;
+        response = value;
         break;
-
       case 'object':
         if (Array.isArray(value)) {
           let strings = value.map((item) => {
             return `"${item}"`;
           });
-          return `[${strings.join(',')}]`;
+          response = `[${strings.join(',')}]`;
         } else {
-          return '';
+          response = '';
         }
         break;
+      default:
+        response = value;
     }
+
+    return response;
   }
 
   /**
@@ -149,7 +154,7 @@ class Field {
 
     // check if inputs is set and have items
     if (inputs && inputs.length !== 0) {
-      inputs.map((item) => {
+      inputs.forEach((item) => {
         // Concatenate the
         inputsString += `${item.field}: ${Field.parseValue(item.value)}
         `;
@@ -160,7 +165,7 @@ class Field {
     if (fields && fields.length !== 0) {
 
       // We go through each of the elements
-      fields.map((item) => {
+      fields.forEach((item) => {
 
         // Check if item has fields
         if (item.hasOwnProperty('fields')) {

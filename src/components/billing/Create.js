@@ -40,7 +40,11 @@ class Create extends PureComponent {
   renderForm() {
     let output = null;
     if (this.state.customer.hasOwnProperty('id')) {
-      output = (<Form customer={this.state.customer} />);
+      output = (
+        <Form
+          customer={this.state.customer}
+        />
+      );
     }
     return output;
   }
